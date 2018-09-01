@@ -78,7 +78,7 @@ func createPeerClient(network *Network, address string) (*PeerClient, error) {
 	return client, nil
 }
 
-// Init initialize a client's Componentg and starts executing a jobs.
+// Init initialize a client's Component and starts executing a jobs.
 func (c *PeerClient) Init() {
 	c.Network.Components.Each(func(Component ComponentInterface) {
 		Component.PeerConnect(c)

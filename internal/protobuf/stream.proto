@@ -25,18 +25,18 @@ option (gogoproto.verbose_equal_all) = true;
 // option (gogoproto.testgen_all) = true;
 
 message ID {
-    // public_key of the peer (we no longer use the public key as the peer ID, but use it to verify messages)
-    bytes public_key = 1;
+    // net_key of the peer (we no longer use the public key as the peer ID, but use it to verify messages)
+    bytes net_key = 1;
     // address is the network address of the peer
     string address = 2;
-    // id is the computed hash of the public key
+    // id is the computed hash of the net key
     bytes id = 3;
 }
 
 message Message {
     google.protobuf.Any message = 1;
 
-    // Sender's address and public key.
+    // Sender's address and net key.
     ID sender = 2;
 
     // Sender's signature of message.

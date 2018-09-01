@@ -20,7 +20,7 @@ type AddressInfo struct {
 }
 
 const (
-	networkClientName = "noise"
+	networkClientName = "dasein-client"
 )
 
 // Errors

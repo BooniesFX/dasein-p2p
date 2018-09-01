@@ -97,7 +97,7 @@ func (lookup *lookupBucket) performLookup(net *network.Network, targetID peer.ID
 //
 // Queries at most #ALPHA nodes at a time per lookup, and returns all peer IDs closest to a target peer ID.
 func FindNode(net *network.Network, targetID peer.ID, alpha int, disjointPaths int) (results []peer.ID) {
-	Component, exists := net.Component(ComponentID)
+	component, exists := net.Component(ComponentID)
 
 	// Discovery Component was not registered. Fail.
 	if !exists {
@@ -110,7 +110,7 @@ func FindNode(net *network.Network, targetID peer.ID, alpha int, disjointPaths i
 
 	// Start searching for target from #ALPHA peers closest to target by queuing
 	// them up and marking them as visited.
-	for i, peerID := range Component.(*Component).Routes.FindClosestPeers(targetID, alpha) {
+	for i, peerID := range component.(*Component).Routes.FindClosestPeers(targetID, alpha) {
 		visited.Store(peerID.PublicKeyHex(), struct{}{})
 
 		if len(lookups) < disjointPaths {
