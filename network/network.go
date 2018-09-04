@@ -24,6 +24,7 @@ const (
 	defaultReceiveWindowSize = 4096
 	defaultSendWindowSize    = 4096
 	defaultWriteBufferSize   = 4096
+	defaultRecvBufferSize    = 4 * 1024 * 1024
 	defaultWriteFlushLatency = 50 * time.Millisecond
 	defaultWriteTimeout      = 3 * time.Second
 )
@@ -82,6 +83,7 @@ type options struct {
 	recvWindowSize    int
 	sendWindowSize    int
 	writeBufferSize   int
+	recvBufferSize    int
 	writeFlushLatency time.Duration
 	writeTimeout      time.Duration
 }

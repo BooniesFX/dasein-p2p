@@ -80,10 +80,8 @@ func (n *Network) receiveMessage(conn net.Conn) (*protobuf.Message, error) {
 		return nil, errEmptyMsg
 	}
 
-	// Message size at most is limited to 4MB. If a big message need be sent,
-	// consider partitioning to message into chunks of 4MB.
-	if size > 4e+6 {
-		return nil, errors.Errorf("message has length of %d which is either broken or too large", size)
+	if size > uint32(n.opts.recvBufferSize) {
+		return nil, errors.Errorf("message has length of %d which is either broken or too large(default %d)", size, n.opts.recvBufferSize)
 	}
 
 	// Read until all message bytes have been read.
